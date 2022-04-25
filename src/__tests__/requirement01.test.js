@@ -1,3 +1,4 @@
+import axios from 'axios';
 import * as api from '../services/api';
 import mockedCategoriesResult from '../__mocks__/categories';
 import mockFetch from '../__mocks__/mockFetch';
@@ -5,15 +6,15 @@ import mockFetch from '../__mocks__/mockFetch';
 describe('1 - Implemente o módulo de acesso à api do Mercado Livre', () => {
 
   afterEach(() => {
-    global.fetch.mockClear();
+    axios.get.mockClear();
   });
 
   it('Implementa a função `getCategories`', () => {
-    jest.spyOn(global, 'fetch').mockImplementation(mockFetch);
+    jest.spyOn(axios, 'get').mockImplementation(mockFetch);
 
     return api.getCategories().then((categories) => {
-      expect(global.fetch).toHaveBeenCalled();
-      expect(global.fetch).toHaveBeenCalledWith(
+      expect(axios.get).toHaveBeenCalled();
+      expect(axios.get).toHaveBeenCalledWith(
         'https://api.mercadolibre.com/sites/MLB/categories',
       );
       expect(categories).toEqual(mockedCategoriesResult);
@@ -26,13 +27,13 @@ describe('1 - Implemente o módulo de acesso à api do Mercado Livre', () => {
     const successResponseBody = {};
 
     const mockFetchPromise = Promise.resolve({
-      json: () => Promise.resolve(successResponseBody),
+      data: successResponseBody,
     });
 
-    jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise);
+    jest.spyOn(axios, 'get').mockImplementation(() => mockFetchPromise);
 
     return api.getProductsFromCategoryAndQuery(categoryId, query).then((products) => {
-      expect(global.fetch).toHaveBeenCalled();
+      expect(axios.get).toHaveBeenCalled();
       expect(products).toEqual(successResponseBody);
     });
   });
