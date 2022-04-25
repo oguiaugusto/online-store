@@ -1,11 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Provider from './ContextAPI';
-import Routes from './components/Routes';
+import { Routes, Header } from './components';
 
 const App = () => (
   <Router>
     <Provider>
+      <Header />
       <Routes />
     </Provider>
   </Router>

@@ -6,13 +6,25 @@ export const Context = createContext();
 
 const Provider = ({ children }) => {
   const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     api.getCategories().then((r) => setCategories(r));
   }, []);
 
+  const searchProducts = (incomingQuery) => {
+    api.getProductsFromQuery(incomingQuery).then((r) => setProducts(r.results));
+  };
+
   const value = {
+    query,
+    setQuery,
+
     categories,
+    products,
+
+    searchProducts,
   };
 
   return (

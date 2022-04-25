@@ -21,3 +21,14 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
     return [];
   }
 }
+
+export async function getProductsFromQuery(query) {
+  try {
+    const URL = `https://api.mercadolibre.com/sites/MLB/search?q=${query}`;
+    const response = await axios.get(URL);
+    return response.data;
+  } catch (error) {
+    console.log(error.message);
+    return [];
+  }
+}
