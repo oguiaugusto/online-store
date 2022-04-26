@@ -5,6 +5,7 @@ import {
   waitFor,
   fireEvent
 } from '@testing-library/react';
+import axios from 'axios';
 import App from '../App';
 import mockedQueryResult from '../__mocks__/query';
 import mockFetch from '../__mocks__/mockFetch';
@@ -14,7 +15,7 @@ describe(`5 - Liste os produtos buscados por termos, com os dados resumidos, ass
   it(`Exibe todos os produtos retornados pela API, dado um determinado
       filtro`, async () => {
 
-    jest.spyOn(global, 'fetch').mockImplementation(mockFetch);
+    jest.spyOn(axios, 'get').mockImplementation(mockFetch);
     render(<App />);
     fireEvent.change(screen.getByTestId('query-input'), {
       target: {
@@ -22,7 +23,7 @@ describe(`5 - Liste os produtos buscados por termos, com os dados resumidos, ass
       },
     });
     fireEvent.click(screen.getByTestId('query-button'));
-    await waitFor(() => expect(global.fetch).toHaveBeenCalled());
+    await waitFor(() => expect(axios.get).toHaveBeenCalled());
     expect(screen.getAllByTestId('product').length).toEqual(
       mockedQueryResult.results.length,
     );

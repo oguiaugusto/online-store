@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import axios from 'axios';
 import App from '../App';
 import * as api from '../services/api';
 import mockedQueryResult from '../__mocks__/query';
@@ -8,11 +9,11 @@ import mockFetch from '../__mocks__/mockFetch';
 describe(`10 - Visualize a lista de produtos adicionados ao carrinho em sua página e permita a manipulação da sua quantidade`, () => {
   it('Adiciona produtos ao carrinho e manipula suas quantidades', async () => {
 
-    jest.spyOn(global, 'fetch').mockImplementation(mockFetch)
+    jest.spyOn(axios, 'get').mockImplementation(mockFetch)
     render(<App />);
-    await waitFor(() => expect(global.fetch).toHaveBeenCalled());
+    await waitFor(() => expect(axios.get).toHaveBeenCalled());
     fireEvent.click(screen.getAllByTestId('category')[0]);
-    await waitFor(() => expect(global.fetch).toHaveBeenCalledTimes(2));
+    await waitFor(() => expect(axios.get).toHaveBeenCalledTimes(2));
     fireEvent.click(screen.getAllByTestId('product-add-to-cart')[0]);
     fireEvent.click(screen.getAllByTestId('product-add-to-cart')[1]);
     fireEvent.click(screen.getByTestId('shopping-cart-button'));

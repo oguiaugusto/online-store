@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import axios from 'axios';
 import App from '../App';
 import mockedQueryResult from '../__mocks__/query';
 import mockFetch from '../__mocks__/mockFetch';
@@ -9,11 +10,11 @@ describe(`11 - Avalie e comente acerca de um produto em sua tela de exibição d
 
     const evaluationContent = `Esta é uma avaliação sobre o produto realizada na
       tela de detalhe.`;
-    jest.spyOn(global, 'fetch').mockImplementation(mockFetch)
+    jest.spyOn(axios, 'get').mockImplementation(mockFetch)
     render(<App />);
-    await waitFor(() => expect(global.fetch).toHaveBeenCalled());
+    await waitFor(() => expect(axios.get).toHaveBeenCalled());
     fireEvent.click(screen.getAllByTestId('category')[0]);
-    await waitFor(() => expect(global.fetch).toHaveBeenCalledTimes(2));
+    await waitFor(() => expect(axios.get).toHaveBeenCalledTimes(2));
     fireEvent.click(screen.getAllByTestId('product-detail-link')[0]);
     await waitFor(
       () => expect(screen.getByTestId('product-detail-name')).toHaveTextContent(
