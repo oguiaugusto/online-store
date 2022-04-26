@@ -32,6 +32,7 @@ const StyledProductCard = styled.div`
     flex-basis: 100%;
     color: #999999;
     text-decoration: line-through;
+    font-size: 12px;
   }
 
   .current-price, .product-price {
