@@ -32,3 +32,24 @@ export async function getProductsFromQuery(query) {
     return [];
   }
 }
+
+export async function getProductDetails(productId) {
+  try {
+    const URL = `https://api.mercadolibre.com/items/${productId}`;
+    const response = await axios.get(URL);
+    return response.data;
+  } catch (error) {
+    console.log(error.message);
+    return [];
+  }
+}
+
+export async function getProductPictures(productId) {
+  try {
+    const product = await getProductDetails(productId);
+    return product.pictures;
+  } catch (error) {
+    console.log(error.message);
+    return [];
+  }
+}
