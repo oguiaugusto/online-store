@@ -13,7 +13,7 @@ describe(`7 - Redirecione para uma tela com a exibição detalhada ao clicar na 
     await waitFor(() => expect(axios.get).toHaveBeenCalled());
     fireEvent.click(screen.getAllByTestId('category')[0]);
     await waitFor(() => expect(axios.get).toHaveBeenCalledTimes(2));
-    fireEvent.click(screen.getAllByTestId('product-detail-link')[0]);
+    fireEvent.click(screen.getAllByTestId('product')[0]);
     await waitFor(
       () => expect(screen.getByTestId('product-detail-name')).toHaveTextContent(
         mockedQueryResult.results[0].title,

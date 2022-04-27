@@ -35,10 +35,16 @@ const PicturesSlider = ({ pictures, naturalSize }) => (
           </Slide>
         ))}
       </Slider>
-      <ButtonBack className="carousel-btn carousel-btn-back">
+      <ButtonBack
+        className="carousel-btn carousel-btn-back"
+        onClick={ (e) => { e.stopPropagation(); } }
+      >
         <MdOutlineNavigateBefore size={ 25 } color="#ffffff" />
       </ButtonBack>
-      <ButtonNext className="carousel-btn carousel-btn-next">
+      <ButtonNext
+        className="carousel-btn carousel-btn-next"
+        onClick={ (e) => { e.stopPropagation(); } }
+      >
         <MdOutlineNavigateNext size={ 25 } color="#ffffff" />
       </ButtonNext>
     </CarouselProvider>
