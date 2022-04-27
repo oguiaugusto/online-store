@@ -6,8 +6,13 @@ import { CategoriesList } from '../components/Home';
 import { Context } from '../ContextAPI';
 
 const Home = () => {
-  const { searchProducts, products, setQuery } = useContext(Context);
-  const { query } = useParams();
+  const {
+    searchProducts,
+    products,
+    setQuery,
+    setProductsFromCategory,
+  } = useContext(Context);
+  const { query, categoryId } = useParams();
 
   useEffect(() => {
     if (query) {
@@ -16,6 +21,14 @@ const Home = () => {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
+
+  useEffect(() => {
+    if (categoryId) {
+      setQuery('');
+      setProductsFromCategory(categoryId);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [categoryId]);
 
   return (
     <div className="home-page">

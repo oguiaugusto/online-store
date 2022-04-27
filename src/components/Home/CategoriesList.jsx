@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { Context } from '../../ContextAPI';
 
 const CategoriesList = () => {
@@ -9,7 +10,9 @@ const CategoriesList = () => {
       <ul>
         {
           categories.map(({ id, name }) => (
-            <li key={ id } data-testid="category">{name}</li>
+            <Link key={ id } to={ `/categoria/${id}` }>
+              <li data-testid="category">{name}</li>
+            </Link>
           ))
         }
       </ul>

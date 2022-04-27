@@ -53,3 +53,14 @@ export async function getProductPictures(productId) {
     return [];
   }
 }
+
+export async function getProductsFromCategory(categoryId) {
+  try {
+    const URL = `https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}`;
+    const products = await axios.get(URL);
+    return products.data;
+  } catch (error) {
+    console.log(error.message);
+    return [];
+  }
+}

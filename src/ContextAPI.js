@@ -17,6 +17,10 @@ const Provider = ({ children }) => {
     api.getProductsFromQuery(incomingQuery).then((r) => setProducts(r.results));
   };
 
+  const setProductsFromCategory = (categoryId) => {
+    api.getProductsFromCategory(categoryId).then((r) => setProducts(r.results));
+  };
+
   const value = {
     query,
     setQuery,
@@ -25,6 +29,7 @@ const Provider = ({ children }) => {
     products,
 
     searchProducts,
+    setProductsFromCategory,
   };
 
   return (
