@@ -1,9 +1,11 @@
 /* eslint-disable import/no-cycle */
 import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import Loader from 'react-loader-spinner';
 import { ProductCard } from '../components';
 import { CategoriesList } from '../components/Home';
 import { Context } from '../ContextAPI';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 const Home = () => {
   const {
@@ -11,6 +13,7 @@ const Home = () => {
     products,
     setQuery,
     setProductsFromCategory,
+    loading,
   } = useContext(Context);
   const { query, categoryId } = useParams();
 
@@ -35,16 +38,24 @@ const Home = () => {
       <CategoriesList />
       <div className="products">
         {
-          products.length === 0 ? (
-            <p data-testid="home-initial-message" className="home-initial-message">
-              Digite algum termo de pesquisa ou escolha uma categoria.
-            </p>
-          ) : null
-        }
-        {
-          products.map((product) => (
-            <ProductCard key={ product.id } product={ product } />
-          ))
+          loading ? (
+            <Loader type="ThreeDots" color="#252525" height={ 25 } width={ 25 } />
+          ) : (
+            <>
+              {
+                products.length === 0 ? (
+                  <p data-testid="home-initial-message" className="home-initial-message">
+                    Digite algum termo de pesquisa ou escolha uma categoria.
+                  </p>
+                ) : null
+              }
+              {
+                products.map((product) => (
+                  <ProductCard key={ product.id } product={ product } />
+                ))
+              }
+            </>
+          )
         }
       </div>
     </div>
