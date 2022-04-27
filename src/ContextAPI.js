@@ -5,7 +5,7 @@ import * as api from './services/api';
 export const Context = createContext();
 
 const Provider = ({ children }) => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [query, setQuery] = useState('');
@@ -36,6 +36,7 @@ const Provider = ({ children }) => {
 
     categories,
     products,
+    setProducts,
 
     searchProducts,
     setProductsFromCategory,

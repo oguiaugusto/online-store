@@ -11,6 +11,7 @@ const Home = () => {
   const {
     searchProducts,
     products,
+    setProducts,
     setQuery,
     setProductsFromCategory,
     loading,
@@ -21,6 +22,9 @@ const Home = () => {
     if (query) {
       setQuery(query);
       searchProducts(query);
+    } else {
+      setQuery('');
+      setProducts([]);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
@@ -29,6 +33,9 @@ const Home = () => {
     if (categoryId) {
       setQuery('');
       setProductsFromCategory(categoryId);
+    } else {
+      setQuery('');
+      setProducts([]);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryId]);
