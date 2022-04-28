@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
-import { getProductPictures } from '../services/api';
-import PicturesSlider from './PicturesSlider';
-import { StyledProductCard } from './styled';
+import { getProductPictures } from '../../services/api';
+import PicturesSlider from '../PicturesSlider';
+import { StyledProductCard } from '../styled';
 
 const MAX_PICTURE_INDEX = 10;
 

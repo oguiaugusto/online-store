@@ -2,8 +2,7 @@
 import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
-import { ProductCard } from '../components';
-import { CategoriesList } from '../components/Home';
+import { CategoriesList, ProductCard } from '../components/Home';
 import { Context } from '../ContextAPI';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
