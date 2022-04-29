@@ -36,7 +36,7 @@ const ProductCard = ({ product }) => {
       <PicturesSlider pictures={ pictures } naturalSize={ 284 } />
       <div className="product-info">
         {
-          originalPrice ? (
+          originalPrice && originalPrice !== price ? (
             <div className="product-price-discount">
               <p className="original-price">{`R$ ${originalPrice.toFixed(2)}` }</p>
               <p className="current-price">{`R$ ${price.toFixed(2)}` }</p>
