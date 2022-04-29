@@ -27,11 +27,9 @@ const CategoriesList = () => {
 
   return (
     <StyledCategoriesList>
-      <div className="categories-title">
+      <div className="categories-title" onClick={ handleList }>
         <p>Categorias</p>
-        <div
-          onClick={ handleList }
-        >
+        <div>
           {
             listClass === OPENED_LIST ? (
               <BsChevronCompactUp size={ 30 } className="categories-icon" />
