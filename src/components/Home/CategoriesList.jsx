@@ -16,19 +16,21 @@ const CategoriesList = () => {
   const { categories } = useContext(Context);
   const [listClass, setListClass] = useState(CLOSED_LIST);
 
+  const handleList = () => {
+    if (listClass === OPENED_LIST) {
+      setListClass(CLOSING_LIST);
+      setTimeout(() => { setListClass(CLOSED_LIST); }, HALF_SECOND);
+    } else {
+      setListClass(OPENED_LIST);
+    }
+  };
+
   return (
     <StyledCategoriesList>
       <div className="categories-title">
         <p>Categorias</p>
         <div
-          onClick={ () => {
-            if (listClass === OPENED_LIST) {
-              setListClass(CLOSING_LIST);
-              setTimeout(() => { setListClass(CLOSED_LIST); }, HALF_SECOND);
-            } else {
-              setListClass(OPENED_LIST);
-            }
-          } }
+          onClick={ handleList }
         >
           {
             listClass === OPENED_LIST ? (
@@ -42,7 +44,7 @@ const CategoriesList = () => {
       <ul className={ listClass }>
         {
           categories.map(({ id, name }) => (
-            <Link key={ id } to={ `/categoria/${id}` }>
+            <Link key={ id } to={ `/categoria/${id}` } onClick={ handleList }>
               <li data-testid="category">{name}</li>
             </Link>
           ))
