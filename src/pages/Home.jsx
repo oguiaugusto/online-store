@@ -45,7 +45,9 @@ const Home = () => {
       <div className="products">
         {
           loading ? (
-            <Loader type="ThreeDots" color="#252525" height={ 25 } width={ 25 } />
+            <div className="loader">
+              <Loader type="ThreeDots" color="#252525" height={ 25 } width={ 25 } />
+            </div>
           ) : (
             <>
               {
