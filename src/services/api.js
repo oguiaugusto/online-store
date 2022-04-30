@@ -64,3 +64,14 @@ export async function getProductsFromCategory(categoryId) {
     return [];
   }
 }
+
+export async function getProductDescription(productId) {
+  try {
+    const URL = `https://api.mercadolibre.com/items/${productId}/description`;
+    const description = await axios.get(URL);
+    return description.data;
+  } catch (error) {
+    console.log(error.message);
+    return {};
+  }
+}
