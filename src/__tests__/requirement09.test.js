@@ -5,6 +5,8 @@ import App from '../App';
 import mockedQueryResult from '../__mocks__/query';
 import mockFetch from '../__mocks__/mockFetch';
 
+jest.spyOn(window, 'scrollTo').mockImplementation(() => {});
+
 describe(`9 - Adicione um produto ao carrinho a partir de sua tela de exibição detalhada`, () => {
   it('Adiciona um produto ao carrinho da sua tela de detalhes', async () => {
 
@@ -14,14 +16,13 @@ describe(`9 - Adicione um produto ao carrinho a partir de sua tela de exibição
 
     fireEvent.click(screen.getAllByTestId('category')[0]);
     await waitFor(() => expect(axios.get).toHaveBeenCalledTimes(2));
-    fireEvent.click(screen.getAllByTestId('product-detail-link')[0]);
+    fireEvent.click(screen.getAllByTestId('product')[0]);
     await waitFor(
       () => expect(screen.getByTestId('product-detail-name')).toHaveTextContent(
         mockedQueryResult.results[0].title,
       ),
     );
     fireEvent.click(screen.getByTestId('product-detail-add-to-cart'));
-    fireEvent.click(screen.getByTestId('shopping-cart-button'));
     await waitFor(() => expect(screen.getAllByTestId('shopping-cart-product-name')));
     expect(screen.getAllByTestId('shopping-cart-product-name')[0]).toHaveTextContent(
       mockedQueryResult.results[0].title,

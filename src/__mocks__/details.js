@@ -11,7 +11,7 @@ module.exports = {
   original_price: null,
   currency_id: "BRL",
   initial_quantity: 3632,
-  available_quantity: 0,
+  available_quantity: 5,
   sold_quantity: 500,
   sale_terms: [{
     id: "WARRANTY_TIME",
