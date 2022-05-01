@@ -5,6 +5,8 @@ import App from '../App';
 import mockedQueryResult from '../__mocks__/query';
 import mockFetch from '../__mocks__/mockFetch';
 
+jest.spyOn(window, 'scrollTo').mockImplementation(() => {});
+
 describe(`7 - Redirecione para uma tela com a exibição detalhada ao clicar na exibição resumida de um produto`, () => {
   it('Clicar no card produto leva à página com seus detalhes', async () => {
 

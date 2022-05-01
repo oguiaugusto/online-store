@@ -2,6 +2,8 @@ import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import App from '../App';
 
+jest.spyOn(window, 'scrollTo').mockImplementation(() => {});
+
 describe('3 - Crie a página do carrinho de compras', () => {
   it('A home deve ter o botão do carrinho de compras', () => {
     render(<App />);

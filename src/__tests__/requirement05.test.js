@@ -10,6 +10,7 @@ import App from '../App';
 import mockedQueryResult from '../__mocks__/query';
 import mockFetch from '../__mocks__/mockFetch';
 
+jest.spyOn(window, 'scrollTo').mockImplementation(() => {});
 
 describe(`5 - Liste os produtos buscados por termos, com os dados resumidos, associados a esses termos`, () => {
   it(`Exibe todos os produtos retornados pela API, dado um determinado

@@ -5,6 +5,8 @@ import App from '../App';
 import mockedQueryResult from '../__mocks__/query';
 import mockFetch from '../__mocks__/mockFetch';
 
+jest.spyOn(window, 'scrollTo').mockImplementation(() => {});
+
 describe('6 - Selecione uma categoria e mostre somente os produtos daquela categoria', () => {
   it(`Filtra corretamente os produtos de uma página para exibir somente os daquela
       categoria`, async () => {
