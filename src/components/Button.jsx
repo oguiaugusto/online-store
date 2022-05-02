@@ -17,6 +17,12 @@ const StyledButton = styled.button`
     filter: ${(props) => (props.outline ? 'saturate(0.8)' : 'saturate(0.6)')};
   }
 
+  :disabled {
+    filter: contrast(0.7) opacity(0.8);
+    background-color: ${(props) => props.bgColor};
+    color: ${(props) => props.color};
+  }
+
   transition-duration: 200ms;
   cursor: pointer;
   user-select: none;
@@ -29,8 +35,18 @@ const StyledButton = styled.button`
   padding: 8px 10px;
 `;
 
-const Button = ({ children, bgColor, color, outline }) => (
-  <StyledButton bgColor={ bgColor } color={ color } outline={ outline }>
+const Button = ({
+  children, bgColor, color, outline, onClick, disabled, idTest, className,
+}) => (
+  <StyledButton
+    bgColor={ bgColor }
+    color={ color }
+    outline={ outline }
+    onClick={ onClick }
+    disabled={ disabled }
+    data-testid={ idTest }
+    className={ className }
+  >
     {children}
   </StyledButton>
 );
@@ -40,10 +56,18 @@ Button.propTypes = {
   bgColor: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
   outline: PropTypes.bool,
+  disabled: PropTypes.bool,
+  onClick: PropTypes.func,
+  idTest: PropTypes.string,
+  className: PropTypes.string,
 };
 
 Button.defaultProps = {
   outline: false,
+  disabled: false,
+  idTest: '',
+  className: '',
+  onClick: () => {},
 };
 
 export default Button;
