@@ -5,14 +5,14 @@ const StyledCartItem = styled.li`
   display: flex;
   align-items: center;
   background: white;
-  height: 120px;
+  height: ${(props) => (props.checkout ? '100px' : '120px')};;
   padding: 10px 12px;
   border-bottom: 1px solid #e0e0e0;
   width: 100%;
 
   .cart-item-img {
-    width: 100px;
-    height: 100px;
+    width: ${(props) => (props.checkout ? '80px' : '100px')};
+    height: ${(props) => (props.checkout ? '80px' : '100px')};
   }
 
   .cart-item-img img {
@@ -25,10 +25,11 @@ const StyledCartItem = styled.li`
     position: relative;
     display: grid;
     align-items: center;
-    grid-template-rows: 40px 1fr 20px;
+    grid-template-rows: ${(props) => (props.checkout ? '40px 1fr' : '40px 1fr 20px')};
     height: 100%;
-    padding-left: 10px;
+    padding: 0 15px 0 10px;
     width: calc(100% - 100px);
+    flex: 1;
   }
 
   .cart-item-title {
@@ -42,13 +43,13 @@ const StyledCartItem = styled.li`
     align-self: flex-start;
   }
 
-
   .cart-item-price {
     font-size: 20px;
+    align-self: ${(props) => (props.checkout ? 'flex-end' : 'center')};
   }
 
   .product-links {
-    display: flex;
+    display: ${(props) => (props.checkout ? 'none' : 'flex')};
     font-size: 14px;
   }
 
@@ -75,7 +76,7 @@ const StyledCartItem = styled.li`
     user-select: none;
     position: absolute;
     bottom: 0;
-    right: 0;
+    right: ${(props) => (props.checkout ? '15px' : '0')};;
   }
 
   .cart-item-quantity .handler {
@@ -110,28 +111,35 @@ const StyledCartItem = styled.li`
     text-align: center;
     font-family: 'Akshar', sans-serif;
     padding: 5px;
+    color: #252525;
+  }
+
+  .cart-item-quantity .handler button {
+    display: ${(props) => (props.checkout ? 'none' : 'inline-block')};
   }
 
   .cart-item-quantity p {
     color: #646464;
     font-size: 12px;
+    display: ${(props) => (props.checkout ? 'none' : 'block')};
   }
 
   @media screen and (min-width: 576px) {
   
+    width: ${(props) => (props.checkout ? '570px' : '100%')};
     padding: 10px 20px;
   }
 
   @media screen and (min-width: 768px) {
   
-    width: 768px;
+    width: ${(props) => (props.checkout ? '570px' : '768px')};
     padding: 10px 30px;
   }
 
-  /* @media screen and ( min-width : 992px ) {
+  @media screen and (min-width: 992px) {
   
-    
-  } */
+    width: ${(props) => (props.checkout ? '400px' : '768px')};
+  }
 `;
 
 export default StyledCartItem;

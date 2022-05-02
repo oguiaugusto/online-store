@@ -8,7 +8,7 @@ import { IoRemoveSharp, IoAddSharp } from 'react-icons/io5';
 import { StyledCartItem } from '../styled';
 import { Context } from '../../ContextAPI';
 
-const Item = ({ product }) => {
+const Item = ({ product, checkout }) => {
   const { removeFromCart, addToCart, subtractFromCart } = useContext(Context);
 
   const disableSub = product.amount <= 1;
@@ -18,7 +18,7 @@ const Item = ({ product }) => {
   const availableQuantity = product.availableQuantity - 1;
 
   return (
-    <StyledCartItem>
+    <StyledCartItem checkout={ checkout }>
       <div className="cart-item-img">
         <img src={ product.thumbnail } alt="cart thumbnail" />
       </div>
@@ -67,6 +67,11 @@ const Item = ({ product }) => {
 
 Item.propTypes = {
   product: PropTypes.objectOf(PropTypes.any).isRequired,
+  checkout: PropTypes.bool,
+};
+
+Item.defaultProps = {
+  checkout: false,
 };
 
 export default Item;
