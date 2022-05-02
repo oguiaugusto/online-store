@@ -10,10 +10,10 @@ const Routes = () => (
   <ScrollToTop>
     <Switch>
       <Route path="/produto/:id" component={ Product } />
+      <Route exact path="/carrinho" component={ Cart } />
       <Route path="/categoria/:categoryId" component={ Home } />
       <Route path="/:query" component={ Home } />
       <Route exact path="/" component={ Home } />
-      <Route exact path="/carrinho" component={ Cart } />
     </Switch>
   </ScrollToTop>
 );

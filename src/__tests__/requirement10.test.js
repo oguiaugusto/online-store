@@ -28,14 +28,10 @@ describe(`10 - Visualize a lista de produtos adicionados ao carrinho em sua pág
     expect(screen.getAllByTestId('shopping-cart-product-name')[0]).toHaveTextContent(
       mockedQueryResult.results[0].title,
     );
-    expect(screen.getAllByTestId('shopping-cart-product-quantity')[0]).toHaveTextContent(
-      '1',
-    );
+    expect(screen.getAllByTestId('shopping-cart-product-quantity')[0]).toHaveValue('1');
     fireEvent.click(screen.getAllByTestId('product-increase-quantity')[0]);
     fireEvent.click(screen.getAllByTestId('product-increase-quantity')[0]);
     fireEvent.click(screen.getAllByTestId('product-decrease-quantity')[0]);
-    expect(screen.getAllByTestId('shopping-cart-product-quantity')[0]).toHaveTextContent(
-      '2',
-    );
+    expect(screen.getAllByTestId('shopping-cart-product-quantity')[0]).toHaveValue('2');
   });
 });

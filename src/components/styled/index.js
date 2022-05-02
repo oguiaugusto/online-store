@@ -3,6 +3,7 @@ import StyledProductCard from './StyledProductCard';
 import StyledHeader from './StyledHeader';
 import StyledCategoriesList from './StyledCategoriesList';
 import StyledAttributesTable from './StyledAttributesTable';
+import StyledCartItem from './StyledCartItem';
 
 export {
   StyledCarousel,
@@ -10,4 +11,5 @@ export {
   StyledHeader,
   StyledCategoriesList,
   StyledAttributesTable,
+  StyledCartItem,
 };

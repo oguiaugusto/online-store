@@ -5,6 +5,7 @@ import { Routes, Header } from './components';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import './styles/home.css';
 import './styles/product.css';
+import './styles/cart.css';
 
 const App = () => (
   <Router>
