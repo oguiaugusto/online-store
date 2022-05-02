@@ -5,6 +5,8 @@ import App from '../App';
 import mockedQueryResult from '../__mocks__/query';
 import mockFetch from '../__mocks__/mockFetch';
 
+jest.spyOn(window, 'scrollTo').mockImplementation(() => {});
+
 describe(`12 - Finalize a compra vendo um resumo dela, preenchendo os seus dados e escolhendo a forma de pagamento`, () => {
   it(`Faz os passos da compra com sucesso: recupera produtos de uma categoria;
       adiciona-os ao carrinho; faz o checkout; insere todos os dados`, async () => {
@@ -19,13 +21,18 @@ describe(`12 - Finalize a compra vendo um resumo dela, preenchendo os seus dados
     await waitFor(() => expect(axios.get).toHaveBeenCalled());
     fireEvent.click(screen.getAllByTestId('category')[0]);
     await waitFor(() => expect(axios.get).toHaveBeenCalledTimes(2));
-    fireEvent.click(screen.getAllByTestId('product-add-to-cart')[0]);
-    fireEvent.click(screen.getByTestId('shopping-cart-button'));
+    fireEvent.click(screen.getAllByTestId('product')[0]);
+    await waitFor(
+      () => expect(screen.getByTestId('product-detail-name')).toHaveTextContent(
+        mockedQueryResult.results[0].title,
+      ),
+    );
+    fireEvent.click(screen.getByTestId('product-detail-add-to-cart'));
     await waitFor(() => expect(screen.getAllByTestId('shopping-cart-product-name')));
     expect(screen.getByTestId('shopping-cart-product-name')).toHaveTextContent(
       mockedQueryResult.results[0].title,
     );
-    expect(screen.getByTestId('shopping-cart-product-quantity')).toHaveTextContent('1');
+    expect(screen.getAllByTestId('shopping-cart-product-quantity')[0]).toHaveValue('1');
     fireEvent.click(screen.getByTestId('checkout-products'));
     fireEvent.change(
       screen.getByTestId('checkout-fullname'),

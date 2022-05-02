@@ -4,6 +4,7 @@ import StyledHeader from './StyledHeader';
 import StyledCategoriesList from './StyledCategoriesList';
 import StyledAttributesTable from './StyledAttributesTable';
 import StyledCartItem from './StyledCartItem';
+import StyledLabel from './StyledLabel';
 
 export {
   StyledCarousel,
@@ -12,4 +13,5 @@ export {
   StyledCategoriesList,
   StyledAttributesTable,
   StyledCartItem,
+  StyledLabel,
 };

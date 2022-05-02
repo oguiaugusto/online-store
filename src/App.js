@@ -6,6 +6,7 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 import './styles/home.css';
 import './styles/product.css';
 import './styles/cart.css';
+import './styles/checkout.css';
 
 const App = () => (
   <Router>
