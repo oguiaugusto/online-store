@@ -11,7 +11,7 @@ const Cart = () => {
 
   const totalPrice = cartProducts.reduce((acc, { amount, price }) => (
     acc + (amount * price)
-  ), 0);
+  ), 0).toFixed(2);
 
   return (
     <div className="cart-page">
