@@ -19,7 +19,6 @@ const Header = () => {
   return (
     <StyledHeader>
       <div className="header-content">
-
         <div className="header-logo" onClick={ () => history.push('/') }>
           <img className="standart-logo" src={ logo } alt="online store logo" />
           <img className="smaller-logo" src={ sunLogo } alt="online store smaller logo" />
@@ -58,7 +57,12 @@ const Header = () => {
             {
               cartItemsAmount > 0 ? (
                 <>
-                  <p className="cart-items-amount">{cartItemsAmount}</p>
+                  <p
+                    data-testid="shopping-cart-size"
+                    className="cart-items-amount"
+                  >
+                    {cartItemsAmount}
+                  </p>
                   <BsCart size={ 30 } color="#e9e9e9" />
                 </>
               ) : (
