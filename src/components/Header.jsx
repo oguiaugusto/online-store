@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { BsCart, BsCart2 } from 'react-icons/bs';
 import { FiSearch } from 'react-icons/fi';
 import { Context } from '../ContextAPI';
 import { StyledHeader } from './styled';
@@ -11,7 +11,10 @@ import sunLogo from '../images/sun-logo.svg';
 
 const Header = () => {
   const history = useHistory();
-  const { query, setQuery } = useContext(Context);
+  const { query, setQuery, cartProducts } = useContext(Context);
+
+  const cartItemsAmount = cartProducts
+    ? cartProducts.reduce((acc, { amount }) => acc + amount, 0) : 0;
 
   return (
     <StyledHeader>
@@ -52,7 +55,16 @@ const Header = () => {
             className="cart-icon icon-btn"
             onClick={ () => history.push('/carrinho') }
           >
-            <AiOutlineShoppingCart size={ 30 } color="#e9e9e9" />
+            {
+              cartItemsAmount > 0 ? (
+                <>
+                  <p className="cart-items-amount">{cartItemsAmount}</p>
+                  <BsCart size={ 30 } color="#e9e9e9" />
+                </>
+              ) : (
+                <BsCart2 size={ 30 } color="#e9e9e9" />
+              )
+            }
           </button>
         </div>
       </div>
