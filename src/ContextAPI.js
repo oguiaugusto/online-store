@@ -10,8 +10,13 @@ const Provider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [query, setQuery] = useState('');
 
+  const [cartProducts, setCartProducts] = useState([]);
+
   useEffect(() => {
     api.getCategories().then((r) => setCategories(r));
+
+    const storedCartProducts = JSON.parse(localStorage.getItem('cartProducts'));
+    if (Array.isArray(storedCartProducts)) setCartProducts(storedCartProducts);
   }, []);
 
   useEffect(() => {
@@ -30,6 +35,46 @@ const Provider = ({ children }) => {
     api.getProductsFromCategory(categoryId).then((r) => setProducts(r.results));
   };
 
+  const addToCart = ({ id, title, price, thumbnail, availableQuantity }) => {
+    const existingItem = cartProducts.find((p) => p.id === id);
+    if (existingItem) {
+      existingItem.amount += 1;
+      existingItem.availableQuantity = availableQuantity;
+      const newCart = cartProducts.map((p) => (p.id === id ? existingItem : p));
+
+      setCartProducts(newCart);
+      localStorage.setItem('cartProducts', JSON.stringify(newCart));
+    } else {
+      const newCart = [
+        ...cartProducts,
+        { id, title, price, thumbnail, availableQuantity, amount: 1 },
+      ];
+
+      setCartProducts(newCart);
+      localStorage.setItem('cartProducts', JSON.stringify(newCart));
+    }
+  };
+
+  const subtractFromCart = (id) => {
+    const item = cartProducts.find((p) => p.id === id);
+
+    if (item.amount !== 1) {
+      item.amount -= 1;
+      item.availableQuantity += 1;
+      const newCart = cartProducts.map((p) => (p.id === id ? item : p));
+
+      setCartProducts(newCart);
+      localStorage.setItem('cartProducts', JSON.stringify(newCart));
+    }
+  };
+
+  const removeFromCart = (id) => {
+    const newCart = cartProducts.filter((p) => p.id !== id);
+
+    localStorage.setItem('cartProducts', JSON.stringify(newCart));
+    setCartProducts(newCart);
+  };
+
   const value = {
     query,
     setQuery,
@@ -43,6 +88,11 @@ const Provider = ({ children }) => {
 
     loading,
     setLoading,
+
+    cartProducts,
+    addToCart,
+    subtractFromCart,
+    removeFromCart,
   };
 
   return (
