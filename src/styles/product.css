@@ -172,11 +172,10 @@
 
   .product-page .product-attributes .responsive-table {
     bottom: 0;
-    left: -1px;
     max-height: unset;
     position: absolute;
     top: 41px;
-    width: calc(100% + 1px);
+    width: 100%;
   }
 
   .product-page .product-description {
