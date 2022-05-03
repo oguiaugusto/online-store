@@ -6,7 +6,7 @@ import { MdOutlineLocalShipping } from 'react-icons/md';
 import { Context } from '../ContextAPI';
 import { getProductDetails, getProductDescription } from '../services/api';
 import { Button, PicturesSlider } from '../components';
-import { AttributesTable } from '../components/Product';
+import { AttributesTable, Feedbacks } from '../components/Product';
 
 const conditions = {
   used: 'Usado',
@@ -136,6 +136,7 @@ const Product = () => {
                 </p>
               </div>
             </div>
+            <Feedbacks />
           </>
         )
       }

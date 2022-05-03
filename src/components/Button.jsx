@@ -36,9 +36,10 @@ const StyledButton = styled.button`
 `;
 
 const Button = ({
-  children, bgColor, color, outline, onClick, disabled, idTest, className,
+  children, type, bgColor, color, outline, onClick, disabled, idTest, className,
 }) => (
   <StyledButton
+    type={ type }
     bgColor={ bgColor }
     color={ color }
     outline={ outline }
@@ -60,6 +61,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
   idTest: PropTypes.string,
   className: PropTypes.string,
+  type: PropTypes.string,
 };
 
 Button.defaultProps = {
@@ -67,6 +69,7 @@ Button.defaultProps = {
   disabled: false,
   idTest: '',
   className: '',
+  type: 'button',
   onClick: () => {},
 };
 

@@ -11,12 +11,16 @@ const Provider = ({ children }) => {
   const [query, setQuery] = useState('');
 
   const [cartProducts, setCartProducts] = useState([]);
+  const [feedbacks, setFeedbacks] = useState([]);
 
   useEffect(() => {
     api.getCategories().then((r) => setCategories(r));
 
     const storedCartProducts = JSON.parse(localStorage.getItem('cartProducts'));
     if (Array.isArray(storedCartProducts)) setCartProducts(storedCartProducts);
+
+    const storedFeedbacks = JSON.parse(localStorage.getItem('feedbacks'));
+    if (Array.isArray(storedFeedbacks)) setFeedbacks(storedFeedbacks);
   }, []);
 
   useEffect(() => {
@@ -75,6 +79,13 @@ const Provider = ({ children }) => {
     setCartProducts(newCart);
   };
 
+  const addFeedback = ({ id, email, stars, message }) => {
+    const newFeedback = [...feedbacks, { id, email, stars, message }];
+
+    setFeedbacks(newFeedback);
+    localStorage.setItem('feedbacks', JSON.stringify(newFeedback));
+  };
+
   const value = {
     query,
     setQuery,
@@ -93,6 +104,9 @@ const Provider = ({ children }) => {
     addToCart,
     subtractFromCart,
     removeFromCart,
+
+    feedbacks,
+    addFeedback,
   };
 
   return (
