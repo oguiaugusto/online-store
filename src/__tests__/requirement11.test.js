@@ -5,6 +5,8 @@ import App from '../App';
 import mockedQueryResult from '../__mocks__/query';
 import mockFetch from '../__mocks__/mockFetch';
 
+jest.spyOn(window, 'scrollTo').mockImplementation(() => {});
+
 describe(`11 - Avalie e comente acerca de um produto em sua tela de exibição detalhada`, () => {
   it('Avalia um produto na sua tela de detalhes', async () => {
 
@@ -15,7 +17,7 @@ describe(`11 - Avalie e comente acerca de um produto em sua tela de exibição d
     await waitFor(() => expect(axios.get).toHaveBeenCalled());
     fireEvent.click(screen.getAllByTestId('category')[0]);
     await waitFor(() => expect(axios.get).toHaveBeenCalledTimes(2));
-    fireEvent.click(screen.getAllByTestId('product-detail-link')[0]);
+    fireEvent.click(screen.getAllByTestId('product')[0]);
     await waitFor(
       () => expect(screen.getByTestId('product-detail-name')).toHaveTextContent(
         mockedQueryResult.results[0].title,
