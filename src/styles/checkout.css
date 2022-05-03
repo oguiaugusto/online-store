@@ -74,8 +74,8 @@
   }
 
   .checkout-page .checkout-products {
+    height: 429px;
     margin-bottom: 0;
-    max-height: 429px;
     overflow: overlay;
     padding: 0;
   }
