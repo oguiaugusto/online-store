@@ -46,7 +46,11 @@ const ProductCard = ({ product }) => {
             <p className="product-price">{`R$ ${price.toFixed(2)}` }</p>
           )
         }
-        { freeShipping ? <p className="product-free-shipping">Frete Grátis</p> : null }
+        { freeShipping ? (
+          <p className="product-free-shipping" data-testid="free-shipping">
+            Frete Grátis
+          </p>
+        ) : null }
         <p className="product-title">{title}</p>
       </div>
     </StyledProductCard>

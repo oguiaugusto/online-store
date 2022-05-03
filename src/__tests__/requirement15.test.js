@@ -4,6 +4,8 @@ import axios from 'axios';
 import App from '../App';
 import mockFetch from '../__mocks__/mockFetch';
 
+jest.spyOn(window, 'scrollTo').mockImplementation(() => {});
+
 describe('15 - Mostre quais produtos tem o frete grátis', () => {
   it('Exibe corretmente a informação de frete grátis dos produtos', async () => {
 
