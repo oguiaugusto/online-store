@@ -2,6 +2,8 @@
 
 Esse projeto foi feito por mim [Guilherme Augusto](https://github.com/oguiaugusto) durante meus estudos no módulo de front-end na [Trybe](https://www.betrybe.com/)
 
+Para usar a aplicação, [cique aqui!](https://oguiaugusto.github.io/online-store)
+
 ---
 
 ## Descrição
