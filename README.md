@@ -12,6 +12,8 @@ O objetivo era criar uma versão simplificada de uma loja online usando a [API d
 
 A aplicação também foi estilizada utilizando o conceito do Mobile First.
 
+### [Link to the website](https://oguiaugusto.github.io/online-store/#/)
+
 ---
 
 ## Tecnologias Utilizadas
